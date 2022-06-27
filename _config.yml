@@ -1,6 +1,6 @@
 # Setup
-title: Jayden's Blog 
-description: 积极主动 独立思考 
+title: Jayden's Blog
+description: 积极主动 独立思考
 url: https://hujie-coder.github.io
 avatar: /avatar.jpeg
 paginate: 5
@@ -46,7 +46,7 @@ sass:
 # Options
 
 # Replace this value and uncomment to enable Google Analytics tracking
-google_analytics: G-MZLY8LC2HQ
+google_analytics: G-MM7YDMS0H8
 
 # Replace this value and uncomment to enable Disqus
 # disqus: xxxxxx
