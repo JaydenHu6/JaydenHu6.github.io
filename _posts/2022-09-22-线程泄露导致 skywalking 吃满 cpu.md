@@ -1,11 +1,11 @@
 ---
 layout: post
-title: 线程泄露导致 skywalking 吃满 cpu 
-date: 2022-09-22 15:00:25 +0800
-last_modified_at: 2022-09-22 15:00:25 +080
-tags: [JVM]
+title: 线程泄露导致 skywalking 吃满 cpu
+date: 2022-06-27 16:08:25 +0800
+last_modified_at: 2022-06-27 16:08:25 +0800
+tags: [jvm]
 categories: [Blog]
-toc: true
+toc:  true
 ---
 
 ## 问题现象
