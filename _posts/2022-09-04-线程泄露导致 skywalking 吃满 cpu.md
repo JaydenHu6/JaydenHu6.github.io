@@ -67,7 +67,7 @@ CosClient 使用后未关闭引发线程泄露，导致 skywalking 采集线程�
 
 ## 总结及解决方案
 
-该问题虽然是因为服务线程泄露导致的 skywalking cpu 占比高，但是也暴露出另外一个问题，skywalking 采集线程采集的频率太高，每秒采集一次，并且不能配置，已经在 Skywalking 社区发起[讨论](https://github.com/apache/skywalking/discussions/9527)。该问题的暴露，同样也引发了另外一个问题，当线程太多了，服务会变得卡顿，大面积请求超时，网络IO被中断。当前的解决方案如下
+该问题是使用 CosClient 后未关闭导致的线程泄露，导致 skywalking-agent 采集频率高，当线程数超过了机器正常调度的线程数时，会会导致服务卡顿，大面积请求超时(tomcat一个请求一个线程)，网络IO被中断。排查过程中同样也暴露出另外一个问题，skywalking 采集线程采集的频率太高，每秒采集一次，并且不能配置，已经在 Skywalking 社区发起[讨论](https://github.com/apache/skywalking/discussions/9527)。当前的解决方案如下
 
 1. 短期内先下掉 skywalking，避免长时间高占用 CPU
 2. 检查所有业务代码，所有使用了 CosClient 的地方均需要关闭，并且进行充分验证回归
