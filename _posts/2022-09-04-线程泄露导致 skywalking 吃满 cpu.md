@@ -1,12 +1,14 @@
 ---
 layout: post
-title: 线程泄露导致 skywalking 吃满 cpu
-date: 2022-06-27 16:08:25 +0800
-last_modified_at: 2022-06-27 16:08:25 +0800
-tags: [jvm]
-categories: [Blog]
+title: 线程泄露引发一系列问题排查
+date: 2022-09-04
+last_modified_at: 2022-09-04
+tags: [JVM,线程泄露,arthas]
+categories: [Java]
 toc:  true
 ---
+
+CosClient 使用后未关闭引发线程泄露，导致 skywalking 采集线程长期占用大量 CPU，大量请求超时，网络IO被中断
 
 ## 背景
 
@@ -63,12 +65,12 @@ toc:  true
 
 ![image-20220904121159897](/images/image-20220904121159897.png)
 
-## 解决方案
+## 总结及解决方案
+
+该问题虽然是因为服务线程泄露导致的 skywalking cpu 占比高，但是也暴露出另外一个问题，skywalking 采集线程采集的频率太高，每秒采集一次，并且不能配置，已经在 Skywalking 社区发起[讨论](https://github.com/apache/skywalking/discussions/9527)。该问题的暴露，同样也引发了另外一个问题，当线程太多了，服务会变得卡顿，大面积请求超时，网络IO被中断。当前的解决方案如下
 
 1. 短期内先下掉 skywalking，避免长时间高占用 CPU
-2. 检查所有业务代码，所有使用了 CosClient 均需求关闭，并且进行充分验证回归
+2. 检查所有业务代码，所有使用了 CosClient 的地方均需要关闭，并且进行充分验证回归
 
-## 推动社区
 
-该问题虽然是因为服务线程泄露导致的 skywalking cpu 占比高，但是也暴露出另外一个问题，skywalking 采集线程采集的频率太高，每秒采集一次，并且不能配置，已经在 Skywalking 社区发起[讨论](https://github.com/apache/skywalking/discussions/9527)
 
