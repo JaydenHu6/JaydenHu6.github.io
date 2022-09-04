@@ -6,6 +6,8 @@ last_modified_at: 2022-09-04
 tags: [JVM,线程泄露,arthas]
 categories: [Java]
 toc:  true
+original: true
+author: [Jayden]
 ---
 
 CosClient 使用后未关闭引发线程泄露，导致 skywalking 采集线程长期占用大量 CPU，大量请求超时，网络IO被中断
