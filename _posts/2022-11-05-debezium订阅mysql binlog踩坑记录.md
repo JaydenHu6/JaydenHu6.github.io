@@ -3,7 +3,7 @@ layout: post
 title: Debezium 订阅 Mysql binlog
 date: 2022-11-05
 last_modified_at: 2022-11-05
-categories: [大数据]
+categories: [bigdata]
 toc:  true
 original: true
 author: [Jayden]
