@@ -107,7 +107,7 @@ GRANT Lock tables ON `default`.* TO 'debezium'@'%';
       "database.history.kafka.bootstrap.servers": "kafka服务器地址",
       "database.history.kafka.topic": "记录所有 schema 变动记录的 kafka topic",
       "include.schema.changes": "true 是否捕捉 schema 变动",
-			"include.query":"true 是否将执行的 sql 也记录下来"
+      "include.query":"true 是否将执行的 sql 也记录下来"
     }
 }
 ```
