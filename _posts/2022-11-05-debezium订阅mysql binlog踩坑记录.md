@@ -43,7 +43,7 @@ author: [Jayden]
 
 ## 准备订阅账号
 
-​	生产环境对数据库权限需要严格控制，按照最小权限原则，新建一个只读账号，赋予 `Reload`、`Replication client`、`Select`、`Lock tables`权限即可，创建用户以及授权语句如下
+​	生产环境对数据库权限需要严格控制，按照最小权限原则，新建一个只读账号，赋予 `Reload`、`Replication client`、`Replication slave`、`Select`、`Lock tables`权限即可，创建用户以及授权语句如下
 
 ```sql
 -- 创建 debezium 用户
@@ -75,7 +75,9 @@ GRANT Lock tables ON `default`.* TO 'debezium'@'%';
 3. 如果 kafka connector 已经启动了，需要先关闭再重启，因为启动后在前台运行，生产环境放到后台运行即可，以下为启动命令
 
    ```shell
-   nohup bin/connect-distributed.sh config/connect-distributed.properties 2>&1 >> logs/destributed-connect.log &
+   nohup bin/connect-distributed.sh \
+   		config/connect-distributed.properties \
+   		2>&1 >> logs/destributed-connect.log &
    ```
 
 4.  检查 kafka connector 是否已经加载了 debezium connector 插件
@@ -83,6 +85,8 @@ GRANT Lock tables ON `default`.* TO 'debezium'@'%';
    ```shell
    curl -H "Accept:application/json" localhost:8083/connector-plugins/
    ```
+
+​	
 
 ## 订阅 Binlog
 
@@ -129,7 +133,7 @@ GRANT Lock tables ON `default`.* TO 'debezium'@'%';
 
 1. kafka connector 与 debezium 版本问题，刚开始我的 debezium 版本为 `2.0`，配置都没有问题，但是注册不了kafka connector 中，将 debezium 版本换为 `1.9` 即可解决，github 上也有人遇到了类似的[问题](https://github.com/DataReply/kafka-connect-mongodb/issues/23)
 
-2. debezium mysql connector 解析有误，执行以下语句，识别不了数据库名称，(该问题已经提给了社区)[https://issues.redhat.com/browse/DBZ-5802]
+2. debezium mysql connector 解析有误，执行以下语句，识别不了数据库名称，[该问题已经提给了社区](https://issues.redhat.com/browse/DBZ-5802)
 
    ```
    alter table default.task add column xxxx varchar(200) comment 'cdc test';
