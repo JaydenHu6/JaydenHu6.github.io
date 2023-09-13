@@ -1,7 +1,7 @@
 # Setup
 title: Jayden's Blog
 description: 积极主动 独立思考
-url: https://hujie-coder.github.io
+url: https://JaydenHu6.github.io
 avatar: /avatar.jpeg
 paginate: 5
 permalink: pretty
@@ -35,7 +35,7 @@ logo: logo.png
 social:
   name: Jayden
   links:
-    - https://github.com/hujie-coder
+    - https://github.com/JaydenHu6
 google_site_verification: xxxxx
 lang: en
 
@@ -54,5 +54,5 @@ google_analytics: G-MM7YDMS0H8
 # Specify the author for blog posts
 author:
   name: Jayden
-  url: https://github.com/hujie-coder/
+  url: https://github.com/JaydenHu6/
   email: 15717967574@163.com
